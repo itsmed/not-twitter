@@ -1,15 +1,13 @@
-
 'use strict';
 
-const store = require('./store');
-
+const utils = require('./store');
+console.log('this is the store but I called it utils', utils);
 module.exports = $(document).ready(function(){
   var $tweets = $('#tweets');
   $tweets.html('');
-
-  var index = store.streams.home.length - 1;
+  var index = utils.streams.home.length - 1;
   while(index >= 0){
-    var tweet = store.streams.home[index];
+    var tweet = utils.streams[utils.streamFrom][index];
     var $tweet = $('<div></div>');
     var $text = $('<p></p>');
     $text.text('@' + tweet.user + ': ' + tweet.message);
@@ -20,7 +18,6 @@ module.exports = $(document).ready(function(){
     $tweet.appendTo($tweets);
     index -= 1;
   }
-
   $('abbr.timeago').timeago();
 
 });
